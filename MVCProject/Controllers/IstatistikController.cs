@@ -16,8 +16,11 @@ namespace MVCProject.Controllers
         public ActionResult Index()
         {
             int categorycount = cm.GetList().Count();
+            ViewData["toplamkategori"] = categorycount;
             int category_heading_count = cm.GetList().Where(x => x.CategoryName == "Yazılım").Count();
+            ViewData["headingcount"]=category_heading_count;
             int headingcount = hm.GetList().Where(x => x.HeadingName.Contains('a')).Count();
+            ViewData["heading"] = headingcount;
             var cats = hm.GetList().GroupBy(g => new
             {
                 g.CategoryId,
@@ -27,10 +30,13 @@ namespace MVCProject.Controllers
                 CategoryId = s2.Key.CategoryId,
                 CategoryName = s2.Key.CategoryName,
                 Count = s2.Count()
-            }).Max(m => m.Count);
-
-
-            return View(cats);
+            }).Max(m => m.CategoryName);
+            ViewData["mesaj"] = cats;
+            var categorytrue = cm.GetList().Where(x => x.CategoryStatus == true).Count();
+            var categoryfalse = cm.GetList().Where(x => x.CategoryStatus == false).Count();
+            int sonuc = categorytrue - categoryfalse;
+            ViewData["kategori"]= sonuc;
+            return View();
 
         }
     }
