@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace MVCProject.Controllers
 {
+    // Deneme
     public class HomeController : Controller
     {
         public ActionResult Index()
