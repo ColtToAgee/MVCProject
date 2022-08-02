@@ -1,10 +1,12 @@
-﻿@using EntityLayer.Concrete
-@model List<Heading>
+﻿
+@using EntityLayer.Concrete
+@model List<Content>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@{ string color = "";}
+
+
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +16,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Projects</h1>
+                    <h1>İçerikler</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -24,7 +26,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Proje İşlemleri</h3>
+                <h3 class="card-title">İçerik İşlemleri</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -42,16 +44,13 @@
                                 #
                             </th>
                             <th style="width: 20%">
-                                Başlık Adı
+                                İçerik Adı
                             </th>
-                            <th style="width: 10%">
+                            <th style="width: 30%">
                                 Oluşturan Yazar
                             </th>
-                            <th style="width: 10%" >
-                                Başlık Durumu
-                            </th>
                             <th style="width: 8%" class="text-center">
-                                Kategori
+                                Başlık
                             </th>
                             <th style="width: 20%">
                             </th>
@@ -63,63 +62,36 @@
 
 
                             <tr>
-                                @if (item.Category.CategoryName == "Tiyatro")
-                                {
-                                    color = "badge badge-warning";
-                                }
-                                @if (item.Category.CategoryName == "Kitap")
-                                {
-                                    color = "badge badge-success";
-                                }
-                                @if (item.Category.CategoryName == "Dizi")
-                                {
-                                    color = "badge badge-info";
-                                }
-                                @if (item.Category.CategoryName == "Film")
-                                {
-                                    color = "badge badge-secondary";
-                                }
-                                @if (item.Category.CategoryName == "Yazılım")
-                                {
-                                    color = "badge badge-primary";
-                                }
+                                
                                 <td>
-                                    @item.HeadingId
+                                    @item.ContentId
                                 </td>
                                 <td>
                                     <a>
-                                        @item.HeadingName
+                                        @item.ContentValue
                                     </a>
                                     <br />
                                     <small>
-                                        @item.HeadingDate
+                                        @item.ContentDate
                                     </small>
                                 </td>
                                 <td>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
-                                            @item.Writer.WriterName @item.Writer.WriterSurname
+                                            <img alt="Avatar" class="table-avatar" src="~/AdminLTE-3.0.4/dist/img/avatar.png">
                                         </li>
                                     </ul>
                                 </td>
-                                <td class="text-sm-center">
-                                    @item.HeadingStatus
-                                </td>
                                 <td class="project-state">
-                                    <span class="@color">@item.Category.CategoryName</span>
+                                    <span >@item.Heading.HeadingName</span>
                                 </td>
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="/Content/GetByHeading/@item.HeadingId">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        İçerik
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="/Heading/EditHeading/@item.HeadingId">
+                                <td class="project-actions text-right">                                    
+                                    <a class="btn btn-info btn-sm" href="~/Content/UpdateContent/@item.ContentId">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Düzenle
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="/Heading/DeleteHeading/@item.HeadingId">
+                                    <a class="btn btn-danger btn-sm" href="~/Content/DeleteContent/@item.ContentId">
                                         <i class="fas fa-trash">
                                         </i>
                                         Sil
@@ -133,18 +105,9 @@
             <!-- /.card-body -->
             <br />
         </div>
-        <a href="/Heading/AddHeading" class="btn btn-success">Yeni Başlık Ekle</a>
+        <a href="~/Content/AddContent" class="btn btn-success">Yeni İçerik Ekle</a>
+        <br />
         <!-- /.card -->
     </section>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,25 @@
+﻿
+@model EntityLayer.Concrete.Content
+@{
+    ViewBag.Title = "UpdateContent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2>İçerik Düzenleme</h2>
+<br />
+@using (Html.BeginForm("UpdateContent", "Content", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("İçerik Adı:")
+        @Html.TextBoxFor(x => x.ContentValue, new { @class = "form-control" })
+        <br /><br />
+        @Html.Label("İçeriğin Başlığı:")
+        @Html.DropDownListFor(x => x.HeadingId, (List<SelectListItem>)ViewBag.vlc, new { @class = "form-control" })
+        <br /><br />
+        @Html.Label("Başlığın Yazarı:")
+        @Html.DropDownListFor(x => x.WriterId, (List<SelectListItem>)ViewBag.vlw, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-warning">Kaydet</button>
+    </div>
+}>

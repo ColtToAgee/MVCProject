@@ -35,20 +35,22 @@ namespace BusinessLayer.Concrete
 
         public void HeadingDelete(Heading heading)
         {
-            headingDal.Delete(heading);
+            heading.HeadingStatus = false;
+            headingDal.Update(heading);
         }
 
         public void HeadingUpdate(Heading heading)
         {
             headingDal.Update(heading);
         }
-        public Heading GetByCategoryId(int id)
+        public List<Heading> GetByCategoryId(int id)
         {
-            return headingDal.Get(x => x.CategoryId == id);
+            return headingDal.List(x => x.CategoryId == id);
         }
         public List<Heading> GetByWriterId(int id)
         {
             return headingDal.List(x=>x.WriterId==id);
         }
+
     }
 }

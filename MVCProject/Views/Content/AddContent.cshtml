@@ -1,0 +1,24 @@
+﻿@model EntityLayer.Concrete.Content
+@{
+    ViewBag.Title = "AddContent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>İçerik Ekleme</h2>
+<br />
+@using (Html.BeginForm("AddContent", "Content", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("İçerik Adı:")
+        @Html.TextBoxFor(x => x.ContentValue, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ContentValue)
+        <br /><br />
+        @Html.Label("İçeriğin Başlığı:")
+        @Html.DropDownListFor(x => x.HeadingId, (List<SelectListItem>)ViewBag.vlc, new { @class = "form-control" })
+        <br /><br />
+        @Html.Label("İçeriğin Yazarı:")
+        @Html.DropDownListFor(x => x.WriterId, (List<SelectListItem>)ViewBag.vlw, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-success">Kaydet</button>
+    </div>
+}>
