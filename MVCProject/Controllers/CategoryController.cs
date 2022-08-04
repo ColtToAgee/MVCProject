@@ -13,8 +13,9 @@ namespace MVCProject.Controllers
 {
     public class CategoryController : Controller
     {
-        // GET: Category
+        
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
+        [Authorize]
         public ActionResult Index()
         {
             return View();

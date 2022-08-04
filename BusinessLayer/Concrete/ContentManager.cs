@@ -44,5 +44,10 @@ namespace BusinessLayer.Concrete
         {
             return contentDal.List();
         }
+
+        public List<Content> GetListByWriter()
+        {
+            return contentDal.List(x=>x.WriterId==2);
+        }
     }
 }
