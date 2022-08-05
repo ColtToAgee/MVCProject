@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFrameWork;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -8,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MVCProject.Controllers
 {   
@@ -17,13 +20,22 @@ namespace MVCProject.Controllers
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
         MessageManager mm = new MessageManager(new EFMessageDal());
         ContentManager conm=new ContentManager(new EFContentDal());
+        WriterLoginManager wlm = new WriterLoginManager(new EFWriterDal());
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult MyHeading()
-        { 
-            var result=hm.GetListByWriter();
+        public ActionResult MyHeading(string p)
+        {
+            Context c = new Context();
+            p = (string)Session["WriterMail"];
+            var writeridinfo = c.Writers.Where(x => x.WriterMail == p).Select(y=>y.WriterID).FirstOrDefault();
+            var result=hm.GetListByWriter(writeridinfo);
+            return View(result);
+        }
+        public ActionResult AllHeading(int p=1)
+        {
+            var result = hm.GetList().ToPagedList(p,4);
             return View(result);
         }
         [HttpGet]
@@ -94,15 +106,18 @@ namespace MVCProject.Controllers
             return View(result);
         }
         [HttpGet]
-        public ActionResult NewMessage()
+        public ActionResult NewMessage(string p)
         {
-            return View();
+            p = (string)Session["WriterMail"];
+            var writeridinfo = wlm.GetWriterIdInfo(p);
+            var result = conm.GetListByWriter(writeridinfo);
+            return View(result);
         }
         [HttpPost]
         public ActionResult NewMessage(Message p)
         {
             p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.SenderMail = "mehmetozgonul@gmail.com";
+            p.SenderMail = (string)Session["WriterMail"];
             MessageValidator validationRules = new MessageValidator();
             ValidationResult results = validationRules.Validate(p);
             if (results.IsValid)
@@ -123,10 +138,14 @@ namespace MVCProject.Controllers
         {
             return PartialView();
         }
-        public ActionResult MyContents()
+        public ActionResult MyContents(string p)
         {
-            var result = conm.GetListByWriter();
+            Context c = new Context();
+            p = (string)Session["WriterMail"];
+            var writeridinfo = c.Writers.Where(x => x.WriterMail == p).Select(y => y.WriterID).FirstOrDefault();
+            var result = conm.GetListByWriter(writeridinfo);
             return View(result);
         }
+        
     }
 }

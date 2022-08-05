@@ -58,21 +58,36 @@ to get the desired effect
                         <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview">
-                            <a href="/AdminCategory/Index" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-house-user "></i>
                                 <p>
                                     Profil
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/WriterPanel/MyHeading" class="nav-link">
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Başlıklar
                                 </p>
                             </a>
-                        </li>                                              
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/WriterPanel/AllHeading" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tüm Başlıklar</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/WriterPanel/MyHeading" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Başlıklarım</p>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </li>
                         <li class="nav-item has-treeview">
                             <a href="/WriterPanel/InBox" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
@@ -82,13 +97,13 @@ to get the desired effect
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="~/Content/Index" class="nav-link">
+                            <a href="/WriterPanel/MyContents" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Yazılar
                                 </p>
                             </a>
-                        </li>                      
+                        </li>
                         <li class="nav-item">
                             <a href="pages/gallery.html" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
@@ -96,7 +111,7 @@ to get the desired effect
                                     Galeri
                                 </p>
                             </a>
-                        </li>                     
+                        </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
@@ -135,7 +150,7 @@ to get the desired effect
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    @*<script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>*@
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE -->
