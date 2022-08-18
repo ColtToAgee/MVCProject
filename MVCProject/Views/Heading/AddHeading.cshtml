@@ -21,6 +21,12 @@
         @Html.Label("Başlığın Yazarı:")
         @Html.DropDownListFor(x=>x.WriterId,(List<SelectListItem>)ViewBag.vlw,new{@class="form-control"} )
         <br />
+        <div class="input-group date" data-provide="datepicker">
+            <input type="text" class="form-control" />
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
         <button class="btn btn-warning">Kaydet</button>
     </div>
 }>
