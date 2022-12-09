@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div>
+    <div>
+        <table class="table" style="display:flex; padding:5px;border-collapse:separate; border-spacing:10px;">
+            <tr>
+                <td>
+                    <div class="card" style="background-color:red;width:10rem;">
+                        <div class="card-body">
+                            <h1>@ViewData["toplamkategori"]</h1>
+                            <p>Toplam Kategori Sayısı</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="card" style="width: 10rem; background-color: red;">
+                        <div class="card-body">
+                            <h1>@ViewData["headingcount"]</h1>
+                            <p>Başlık Tablosundaki "Yazılım" Kategorisine Ait Başlık Sayısı</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="card" style="width: 10rem; background-color: red;">
+                        <div class="card-body">
+                            <h1>@ViewData["heading"]</h1>
+                            <p>Yazar Adında 'A' Harfi Geçen Yazar Sayısı</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="card" style="width: 10rem; background-color: red;">
+                        <div class="card-body">
+                            <h1>@ViewData["mesaj"]</h1>
+                            <p>En Fazla Başlığa Sahip Kategori Adı</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="card" style="width: 10rem; background-color: red;">
+                        <div class="card-body">
+                            <h1>@ViewData["kategori"]</h1>
+                            <p>Kategori tablosunda durumu true olan kategoriler ile false olan kategoriler arasındaki sayısal fark</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+    
+</div>
+
